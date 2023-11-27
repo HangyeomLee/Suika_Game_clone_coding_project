@@ -1,8 +1,11 @@
 import {Bodies, Engine, Render, Runner, World} from "matter-js";
+import { FRUITS_BASE } from "./fruits";
+
+let FRUITS = FRUITS_BASE;
 
 const engine = Engine.create();
 const render = Render.create({
-        engine,
+        engine: engine,
         element: document.body,
         options: {
             wireframes: false,
@@ -38,3 +41,17 @@ World.add(world, [leftWall, rightWall, groundWall,topLine]);
 
 Render.run(render);
 Runner.run(engine);
+
+function addFruit(){
+    const index = 7;
+    const fruit = FRUITS[index];
+    
+    const body = Bodies.circle(300,50,fruit.radius, {
+        index: index,
+        render:{
+            sprite:{texture: `${fruit.name}.png`}
+        }
+        });
+        World.add(world, add);
+}
+addFruit();
